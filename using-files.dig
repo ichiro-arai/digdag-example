@@ -1,0 +1,21 @@
+timezone: UTC
+
+_retry: 2
+
+schedule:
+  cron>: 0-59/1 * * * *
+
++dependency_check:
+  loop>: ${myconf.dependency_minutes}
+  _do:
+    require>: prepare-data
+    session_time: ${moment(session_time).subtract(i, 'minutes').format()}
+  _parallel: true
+
++stub:
+  echo>: stub execution ${session_time} ${moment()}
+
++check:
+  loop>: ${myconf.dependency_minutes}
+  _do:
+    sh>: ls -l logs/${moment(session_time).subtract(i, 'minutes').format()}.log

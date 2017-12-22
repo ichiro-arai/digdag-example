@@ -1,0 +1,12 @@
+timezone: UTC
+
+_retry: 2
+
+schedule:
+  cron>: 0-59/1 * * * *
+
++setup:
+  sh>: mkdir -p logs
+
++generate:
+  sh>: bash -c "sleep $(($RANDOM % 3))" ; echo ${session_time} ${moment()} > logs/${session_time}.log
