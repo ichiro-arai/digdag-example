@@ -9,4 +9,4 @@ schedule:
   sh>: mkdir -p logs
 
 +generate:
-  sh>: bash -c "sleep $(($RANDOM % 3))" ; echo ${session_time} ${moment()} > logs/${session_time}.log
+  sh>: bash -c "sleep $(($RANDOM % 300))" ; echo ${session_time} ${moment()} > logs/${session_time}.log
